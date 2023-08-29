@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "com.blc.data"
     compileSdk = 33
+    android.buildFeatures.buildConfig = true
 
     defaultConfig {
         minSdk = 24
