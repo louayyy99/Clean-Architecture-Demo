@@ -1,6 +1,12 @@
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
+    id("org.jlleitschuh.gradle.ktlint") version ("11.5.1")
 }
 
 android {
@@ -49,6 +55,19 @@ android {
     }
 }
 
+configure<KtlintExtension> {
+    android.set(true)
+    verbose.set(true)
+    ignoreFailures.set(false)
+    disabledRules.set(listOf("no-wildcard-imports"))
+    reporters {
+        reporter(ReporterType.PLAIN)
+        reporter(ReporterType.CHECKSTYLE)
+    }
+}
+
+tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
@@ -68,4 +87,20 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // TIMBER
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // DAGGER - HILT
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    // LIFECYCLE
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+
+    // NAVIGATION
+    val navVersion = "2.6.0"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 }
