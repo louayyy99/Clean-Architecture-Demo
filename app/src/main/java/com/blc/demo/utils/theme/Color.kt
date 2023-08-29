@@ -1,4 +1,4 @@
-package com.blc.demo.ui.theme
+package com.blc.demo.utils.theme
 
 import androidx.compose.ui.graphics.Color
 

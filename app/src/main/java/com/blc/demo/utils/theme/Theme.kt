@@ -1,4 +1,4 @@
-package com.blc.demo.ui.theme
+package com.blc.demo.utils.theme
 
 import android.app.Activity
 import android.os.Build
