@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -40,4 +41,14 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // GSON
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("androidx.annotation:annotation:1.6.0")
+
+    // COROUTINES
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+    // INJECT
+    implementation("javax.inject:javax.inject:1")
 }
